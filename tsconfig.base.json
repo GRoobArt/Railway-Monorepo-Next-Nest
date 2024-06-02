@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true
+  },
+  "exclude": ["node_modules"]
+}

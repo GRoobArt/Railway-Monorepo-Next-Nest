@@ -1,0 +1,75 @@
+
+
+# Output
+dist
+.vercel
+.next
+test
+.turbo
+metadata.ts
+out
+
+# dependencies
+node_modules
+package-lock.json
+
+# Prisma
+prisma/.prisma/client
+prisma/migrations/**
+migrations
+*.sql
+
+# Next.js
+.next
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Enviroment variables
+.env
+.env.local
+.env.test
+.env.*
+!.env.dev
+!.env.example
+!.env.development
+.docker.*
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# production
+/build
+
+# CloudFlare
+
+storybook-static
+*storybook.log
+
+# Amazon
+riseapp.pem
+

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "sourceMaps": true,
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "transform": {
+      "legacyDecorator": true,
+      "decoratorMetadata": true
+    },
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@tests/*": ["tests/*"],
+      "@api/*": ["src/api/*"],
+      "@utils/*": ["src/utils/*"],
+      "@common/*": ["src/common/*"]
+    },
+    "target": "es2022"
+  },
+  "minify": false
+}

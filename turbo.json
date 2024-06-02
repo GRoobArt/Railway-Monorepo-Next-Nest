@@ -1,0 +1,29 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalEnv": ["DATABASE_URL", "DIRECT_URL"],
+  "globalDotEnv": [".env"],
+  "pipeline": {
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "dotEnv": [".env.dev"]
+    },
+    "start": {
+      "cache": false,
+      "persistent": true,
+      "dotEnv": [".env.dev"]
+    },
+    "build": {
+      "env": ["DATABASE_URL", "DIRECT_URL"],
+      "outputs": ["dist/**", ".next/**", ".next/cache/**"]
+    },
+    "build:web": {
+      "env": ["NEXTAUTH_SECRET", "NEXT_PUBLIC_API_URL"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "build:api": {
+      "dependsOn": ["^postinstall"],
+      "outputs": ["dist/**"]
+    }
+  }
+}

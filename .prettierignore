@@ -1,0 +1,7 @@
+dist/
+.next/
+.turbo/
+coverage/
+node_modules/
+tsconfig.json
+tsconfig.prod.json

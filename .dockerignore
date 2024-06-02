@@ -1,0 +1,16 @@
+*
+!/package-lock.json
+!/tsconfig.base.json
+
+!/apps/api/package.json
+!/apps/api/tsconfig.prod.json
+!/apps/api/tsconfig.json
+!/apps/api/.swcrc
+!/apps/api/nest-cli.json
+!/apps/api/src
+
+!/apps/web/src/
+!/apps/web/next.config.mjs
+!/apps/web/src/
+!/apps/web/src/
+!/apps/web/src/
