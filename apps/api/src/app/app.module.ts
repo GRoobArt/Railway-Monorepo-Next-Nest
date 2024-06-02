@@ -48,8 +48,4 @@ const CACHE_TTL = process.env.DEVELEPORTMENT
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(FastifyDomainFilterMiddleware).forRoutes(UserController);
-  }
-}
+export class AppModule {}
