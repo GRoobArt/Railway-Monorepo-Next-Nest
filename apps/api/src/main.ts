@@ -37,43 +37,40 @@ async function bootstrap() {
 
   app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
 
-  if (developer) {
-    logger.log('Developer mode');
-    const options = new DocumentBuilder()
-      .setTitle('Generic API')
-      .setDescription('A generic API')
-      .setVersion('1.0')
-      .addBearerAuth(
-        {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
-          name: 'JWT',
-          description: 'Enter JWT token',
-          in: 'header',
-        },
-        sJwtBearer,
-      )
-      .addApiKey(
-        {
-          type: 'apiKey',
-          scheme: 'apiKey',
-          bearerFormat: 'apiKey',
-          name: sApiKeyBearer,
-          description: 'Enter API key',
-          in: 'header',
-        },
-        sApiKeyBearer,
-      )
-      .build();
+  const options = new DocumentBuilder()
+    .setTitle('Generic API')
+    .setDescription('A generic API')
+    .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'JWT',
+        description: 'Enter JWT token',
+        in: 'header',
+      },
+      sJwtBearer,
+    )
+    .addApiKey(
+      {
+        type: 'apiKey',
+        scheme: 'apiKey',
+        bearerFormat: 'apiKey',
+        name: sApiKeyBearer,
+        description: 'Enter API key',
+        in: 'header',
+      },
+      sApiKeyBearer,
+    )
+    .build();
 
-    const document = SwaggerModule.createDocument(app, options);
+  const document = SwaggerModule.createDocument(app, options);
 
-    // Set up Swagger UI
-    SwaggerModule.setup(`docs`, app, document);
+  // Set up Swagger UI
+  SwaggerModule.setup(`docs`, app, document);
 
-    logger.log(`Swagger UI available at /docs`);
-  }
+  logger.log(`Swagger UI available at /docs`);
 
   await app.listen(port, '0.0.0.0');
 
