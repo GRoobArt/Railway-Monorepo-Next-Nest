@@ -20,7 +20,7 @@ WORKDIR /app
 # Install node modules
 COPY package*.json ./
 
-RUN npm update && npm install
+RUN npm install
 
 # Copy application code
 COPY --link . .

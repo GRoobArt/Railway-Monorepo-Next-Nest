@@ -20,7 +20,7 @@
     "paths": {
       "@src/*": ["src/*"],
       "@tests/*": ["tests/*"],
-      "@pai/*": ["src/api/*"],
+      "@api/*": ["src/api/*"],
       "@utils/*": ["src/utils/*"],
       "@common/*": ["src/common/*"],
     },

@@ -5,9 +5,9 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { ConfigService } from '@nestjs/config';
-import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { sApiKeyBearer, sJwtBearer } from '@utils/header';
+
+import { AppModule } from '@src/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -21,22 +21,44 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  const logger = new Logger('NestBootstrap');
 
   app.enableCors();
 
   const configService = app.get(ConfigService);
 
-  const developer = configService.get<string>('DEVELEPORTMENT', 'true');
+  const port = configService.get<string>('PORT', { infer: true });
 
-  let port = configService.get<string>('PORT_API', '4000');
+  const DEVELEPORTMENT = configService.get<string>('DEVELEPORTMENT', {
+    infer: true,
+  });
 
-  if (!developer) {
-    port = configService.get<string>('PORT', { infer: true });
+  if (DEVELEPORTMENT) {
+    Logger.log('DEVELEPORTMENT is enabled');
+    const options = new DocumentBuilder()
+      .setTitle('Generic API')
+      .setDescription('A generic API')
+      .setVersion('1.0')
+      .addBearerAuth({
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'JWT',
+        description: 'Enter JWT token',
+        in: 'header',
+      })
+      .build();
+
+    const document = SwaggerModule.createDocument(app, options);
+
+    SwaggerModule.setup(`docs`, app, document);
+
+    Logger.log(`Swagger is enabled http://localhost:${port}/docs`);
   }
+
+  app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
 
   await app.listen(port, '0.0.0.0');
 
-  logger.log(`Listening on port ${port}`);
+  Logger.log(`Listening on port http://localhost:${port}/v1`);
 }
 bootstrap();
