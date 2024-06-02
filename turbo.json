@@ -24,6 +24,30 @@
     "build:api": {
       "dependsOn": ["^postinstall"],
       "outputs": ["dist/**"]
+    },
+    "db:dev": {
+      "cache": false
+    },
+    "db:reset": {
+      "cache": false
+    },
+    "db:generate": {
+      "cache": false
+    },
+    "db:deploy": {
+      "cache": false
+    },
+    "db:push": {
+      "cache": false
+    },
+    "db:pull": {
+      "cache": false
+    },
+    "db:studio": {
+      "cache": false
+    },
+    "db:seed": {
+      "cache": false
     }
   }
 }

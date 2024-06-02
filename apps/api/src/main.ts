@@ -33,6 +33,8 @@ async function bootstrap() {
     infer: true,
   });
 
+  app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
+
   if (DEVELEPORTMENT === 'true') {
     Logger.log('Development is enabled');
     const options = new DocumentBuilder()
@@ -55,8 +57,6 @@ async function bootstrap() {
 
     Logger.log(`Swagger is enabled http://localhost:${port}/docs`);
   }
-
-  app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
 
   await app.listen(port, '0.0.0.0');
 

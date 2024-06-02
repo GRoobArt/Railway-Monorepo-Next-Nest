@@ -20,10 +20,14 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prisma:generate": "prisma generate",
-    "prisma:debug": "prisma db push",
-    "prisma:dev": "prisma migrate dev --name",
-    "prisma:deploy": "prisma migrate deploy"
+    "db:dev": "prisma migrate dev --name init",
+    "db:reset": "prisma migrate reset --force",
+    "db:generate": "prisma generate",
+    "db:deploy": "prisma migrate deploy",
+    "db:push": "prisma db push",
+    "db:pull": "prisma db pull",
+    "db:studio": "prisma studio",
+    "db:seed": "prisma db seed"
   },
   "dependencies": {
     "@fastify/static": "^7.0.4",

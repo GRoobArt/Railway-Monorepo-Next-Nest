@@ -1,14 +1,25 @@
 {
-  "name": "monorepo-template",
+  "name": "rise",
   "version": "1.0.0",
+  "prisma": {
+    "seed": "ts-node apps/api/prisma/seed.ts"
+  },
   "scripts": {
     "docker:install": "docker-compose up",
     "docker:uninstall": "docker-compose down",
+    "docker:restart": "docker-compose restart",
     "dev": "dotenv -- turbo dev",
     "start": "dotenv -- turbo start",
     "build": "dotenv -- turbo build",
     "build:web": "dotenv -- turbo build --filter=web",
-    "build:api": "dotenv -- turbo build --filter=api"
+    "build:api": "dotenv -- turbo build --filter=api",
+    "db:dev": "dotenv -- turbo db:dev --filter=api",
+    "db:reset": "dotenv -- turbo db:reset --filter=api",
+    "db:generate": "dotenv -- turbo db:generate --filter=api",
+    "db:deploy": "dotenv -- turbo db:deploy --filter=api",
+    "db:push": "dotenv -- turbo db:push --filter=api",
+    "db:pull": "dotenv -- turbo db:pull --filter=api",
+    "db:studio": "dotenv -- turbo db:studio --filter=api"
   },
   "keywords": [
     "monorepo",
