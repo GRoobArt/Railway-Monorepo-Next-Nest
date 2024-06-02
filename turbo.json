@@ -14,7 +14,7 @@
       "dotEnv": [".env.dev"]
     },
     "build": {
-      "env": ["DATABASE_URL", "DIRECT_URL"],
+      "env": ["DATABASE_URL", "DIRECT_URL", "DEVELEPORTMENT"],
       "outputs": ["dist/**", ".next/**", ".next/cache/**"]
     },
     "build:web": {

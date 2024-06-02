@@ -8,6 +8,7 @@ import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from '@src/app.module';
+import { EnvProps } from '@src/config.env';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -24,7 +25,7 @@ async function bootstrap() {
 
   app.enableCors();
 
-  const configService = app.get(ConfigService);
+  const configService = app.get(ConfigService<EnvProps>);
 
   const port = configService.get<string>('PORT', { infer: true });
 
@@ -32,8 +33,8 @@ async function bootstrap() {
     infer: true,
   });
 
-  if (DEVELEPORTMENT) {
-    Logger.log('DEVELEPORTMENT is enabled');
+  if (DEVELEPORTMENT === 'true') {
+    Logger.log('Development is enabled');
     const options = new DocumentBuilder()
       .setTitle('Generic API')
       .setDescription('A generic API')

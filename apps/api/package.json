@@ -2,6 +2,9 @@
   "name": "api",
   "version": "0.0.1",
   "private": true,
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "scripts": {
     "postinstall": "prisma generate",
     "build": "nest build",

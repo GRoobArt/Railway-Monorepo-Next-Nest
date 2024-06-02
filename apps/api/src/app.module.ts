@@ -5,11 +5,10 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { redisStore } from 'cache-manager-redis-yet';
 
 import { PrismaModule } from '@common/prisma/prisma.module';
-import { UserModule } from '@api/users/user.module';
+import { ApiModule } from '@api/api.module';
 
-const CACHE_TTL = process.env.DEVELEPORTMENT
-  ? 1000 * 60 * 60
-  : 1000 * 60 * 60 * 24;
+const CACHE_TTL =
+  process.env.DEVELEPORTMENT === 'true' ? 1000 * 60 * 60 : 1000 * 60 * 60 * 24;
 
 @Module({
   imports: [
@@ -25,9 +24,10 @@ const CACHE_TTL = process.env.DEVELEPORTMENT
       isGlobal: true,
       useFactory: async () => ({
         store: await redisStore({
-          password: process.env.DEVELEPORTMENT
-            ? undefined
-            : process.env.REDIS_PASSWORD,
+          password:
+            process.env.DEVELEPORTMENT === 'true'
+              ? undefined
+              : process.env.REDIS_PASSWORD,
           socket: {
             host: process.env.REDIS_HOST,
             port: Number(process.env.REDIS_PORT),
@@ -37,7 +37,7 @@ const CACHE_TTL = process.env.DEVELEPORTMENT
       }),
     }),
     PrismaModule.forRoot(),
-    UserModule,
+    ApiModule,
   ],
 })
 export class AppModule {}
