@@ -25,7 +25,7 @@ RUN npm install
 # Copy application code
 COPY --link . .
 
-RUN npm run prisma:generate
+RUN npm run db:generate
 
 # Build application
 RUN npm run build
