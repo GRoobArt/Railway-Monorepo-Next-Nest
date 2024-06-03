@@ -6,6 +6,7 @@ import { redisStore } from 'cache-manager-redis-yet';
 
 import { PrismaModule } from '@common/prisma/prisma.module';
 import { ApiModule } from '@api/api.module';
+import { HealthModule } from '@utils/health/health.module';
 
 const CACHE_TTL =
   process.env.DEVELEPORTMENT === 'true' ? 1000 * 60 * 60 : 1000 * 60 * 60 * 24;
@@ -37,6 +38,7 @@ const CACHE_TTL =
       }),
     }),
     PrismaModule.forRoot(),
+    HealthModule,
     ApiModule,
   ],
 })
